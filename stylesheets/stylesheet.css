@@ -2,8 +2,8 @@
   box-sizing: border-box; }
 html {
   min-height: 100%;
-  background: url(../images/oo.png) no-repeat;
-  background-size: cover;
+  background-color: #159957;
+  background-image: linear-gradient(120deg, #155799, #159957);
 }
 body {
   padding: 0;
@@ -60,9 +60,7 @@ a {
 
 .page-header {
   color: #fff;
-  text-align: center;
-  background-color: #159957;
-  background-image: linear-gradient(120deg, #155799, #159957); }
+  text-align: center; }
 
 @media screen and (min-width: 64em) {
   .page-header {
