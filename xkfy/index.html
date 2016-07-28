@@ -9,7 +9,7 @@
   <!--css样式-->
 <style type="text/css">
 
-body{font-size:12px; font-family:"微软雅黑"; color:#ffffff;min-height: 100%; background:url(img/bg.jpg)no-repeat;background-size:cover;width:100%;height:100%;}/*font-size是字体大小 font-family是字体类型 color字体颜色*/
+body{font-size:12px; font-family:"微软雅黑"; color:#ffffff;}/*font-size是字体大小 font-family是字体类型 color字体颜色*/
 h1{font-size:30px; color:#c0c0c0; text-align:center; margin-top:20px; text-shadow: 5px 5px 5px #3366ff}/*text-shadow是字体阴影*/
 *{margin:0; padding:0;}/*外边距margin 内边距padding*/
 .box{width:800px; height:600px;/*修饰div盒子*/
@@ -22,6 +22,7 @@ h1{font-size:30px; color:#c0c0c0; text-align:center; margin-top:20px; text-shado
 	border-radius:10px;
 	box-shadow:0 0 30px rgb(255,255,255);
 	} 
+	.img{width:100%;height:100%;no-repeat;background-size:cover;}
 .box .box1{width:780px; height:580px; margin:auto; position:absolute;left:8px; top:10px; background:#cc66ff,#cc9999,#9933ff;border-radius:5px;overflow:hidden;}
 /*.box .box1 h2{font-size:20px; color:black; text-align:center; margin:20px;}*/
 /*.box .box1 h2 a{text-decoration:none;color:black;}/*修饰超链接a标签的下划线和字体颜色！*/
@@ -31,7 +32,7 @@ img{width:780px; height:580px;}
  </head>
 
 
- <body>
+ <body <img src="img/bg.jpg"/>>
  <h1>Java结合数据库实现炫酷翻页———Jack</h1>
 	<div class="box">
 
