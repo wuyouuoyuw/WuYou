@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Java实现Banner翻页和批量上传--Jack</title>
+	<!--引入javascript-->
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+
+	<script type="text/javascript">
+			console.log(1) // 页面加载的时候调用
+			$(function(){
+				console.log(2) // 页面初始化完成时调用
+				var $banner= $('.banner');
+				var $bannerBox = $banner.find('.bannerbox');
+				var $prev = $banner.find('.prev');
+				var $next = $banner.find('.next');
+				var size = $bannerBox.find('li').length, currentIndex = 1;
+
+				var handler = null;
+				var moving = false;
+
+				function start() {
+					console.log('try start ' + handler)
+					if (!handler) {
+						handler = setInterval(function(){
+							next();
+						}, 2000);
+						console.log('start ' + handler)
+					}
+				}
+
+				function stop() {
+					console.log('try stop ' + handler)
+					if (handler) {
+						console.log('stop ' + handler)
+						clearInterval(handler);
+						handler = null;
+					}
+				}
+
+				start();
+
+				$banner.bind('mouseover', function(){
+					stop();
+				});
+				$banner.bind('mouseout', function(){
+					start();
+				});
+
+				$banner.on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+					moving = false;
+				});
+
+				$prev.bind('click', function(){
+					prev();
+				});
+				$next.bind('click', function(){
+					next();
+				});
+
+				function move(val) {
+					console.log('try move ' + moving)
+					if (moving) return;
+					console.log('move ' + moving)
+					moving = true;
+					currentIndex += val;
+					if (currentIndex > size) currentIndex = 1;
+					if (currentIndex < 1) currentIndex = size;
+					$bannerBox.css('left', - (520 * (currentIndex - 1)));
+				}
+
+				function next() {
+					move(1);
+				}
+
+				function prev() {
+					move(-1);
+				}
+			});
+			console.log(3) // 页面加载的时候调用
+	</script>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+			body{
+			background:url("img/bg.jpg")no-repeat;background-size:cover;
+			font-size:12px;font-family:"微软雅黑";color:red;
+			 }
+		
+			.banner{
+			 width:520px;height:280px;margin:100px auto;
+			overflow: hidden;
+			position: relative;
+			border-radius:10px;
+			 }
+
+			.banner .bannerbox{width:1000%;z-index:0; position:absolute;left:0;transition: left 1s}
+
+
+			.banner .bannerbox li{
+			list-style:none;float:left;
+			}
+
+			.banner .bannerbox li img { width: 520px; height: 280px;}
+			
+			.banner .prev{
+			width:44px;height:44px;
+			display:block;position:absolute;
+			left:0px;top:120px;
+			text-decoration:none;/*超链接去下划线*/
+			text-align:center;
+			line-height: 35px;color:#ffff00;
+			z-index:1;
+			}
+
+			.banner .next{
+			width:44px;height:44px;
+			display:block;position:absolute;
+			right:0px;top:120px;
+			text-decoration:none;/*超链接去下划线*/
+			text-align: center;
+			line-height: 35px;color:#ffff00;
+			z-index:1;
+			}
+
+
+			.banner .prev:hover{background:rgba(0,0,0,.2)}/*当鼠标移动上去*/
+
+			.banner .next:hover{background:rgba(0,0,0,.2)}
+			h1{font-size:30px; color:#c0c0c0; text-align:center; margin-top:20px; text-shadow: 5px 5px 5px #3366ff}
+	</style>
+</head>
+	<body>
+	<h1>Banner----Jack</h1>
+			<div class="banner">
+			<a href="javascript:void(0)"class="prev"><img src="img/z.png"/></a>
+					<ul class="bannerbox">
+							<li><img src="img/1.jpg"/></li>
+							<li><img src="img/2.jpg"/></li>
+							<li><img src="img/3.jpg"/></li>
+							<li><img src="img/4.jpg"/></li>
+							<li><img src="img/5.jpg"/></li>
+							<li><img src="img/6.jpg"/></li>
+							<li><img src="img/7.jpg"/></li>
+							<li><img src="img/8.jpg"/></li>
+							<li><img src="img/9.jpg"/></li>
+							<li><img src="img/10.jpg"/></li>
+							
+					</ul>
+			<a href="javascript:void(0)"class="next"><img src="img/y.png"/></a>
+			</div>
+	</body>
+</html>
